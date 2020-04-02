@@ -10,8 +10,8 @@ The same repeated number may be chosen from candidates unlimited number of times
 All numbers (including target) will be positive integers.
 The solution set must not contain duplicate combinations.
 
-## Code
-```
+## Code: Python
+```python
 class Solution(object):
     def combinationSum(self, candidates, target):
         """
