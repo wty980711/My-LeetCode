@@ -32,3 +32,10 @@ class Solution(object):
         search(0, [], candidates)
         return rst
 ```
+
+## Idea
+In this problem, I try to find every possible combination using recursion.
+The combination is stored in `curr`. 
+1. If `sum(curr) == target`, just append `curr` into `rst`, and `return rst` in the end.
+2. If `sum(curr) > target`, which means it's not necessary to recursion-research for new combinations of this `curr`, so just return.
+3. If `sum(curr) < target`, which mearns recursion-research is still necessary, then we search every member in the rest of `candi`.
