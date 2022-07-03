@@ -81,16 +81,24 @@ I want to find the **value** of the target
 
 [34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
-[702. Search in a Sorted Array of Unknown Size]([(1) Search in a Sorted Array of Unknown Size - LeetCode](https://leetcode.com/problems/search-in-a-sorted-array-of-unknown-size/))
+[702. Search in a Sorted Array of Unknown Size](https://leetcode.com/problems/search-in-a-sorted-array-of-unknown-size/)
 
 A smart way to define search boudaries
 
-[33. Search in Rotated Sorted Array]([(1) Search in Rotated Sorted Array - LeetCode](https://leetcode.com/problems/search-in-rotated-sorted-array/submissions/))
+[33. Search in Rotated Sorted Array - LeetCode](https://leetcode.com/problems/search-in-rotated-sorted-array/submissions/)
 
 Make sure to consider the edge cases (<=, >=, <, >)
 
-[*81. Search in Rotated Sorted Array II]([(1) Search in Rotated Sorted Array II - LeetCode](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/))
+[*81. Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
 
 Check position of the target and mid first, and then move the pointers.
 
-[*4. Median of Two Sorted Arrays]([(1) Median of Two Sorted Arrays - LeetCode](https://leetcode.com/problems/median-of-two-sorted-arrays/))
+[*4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
+
+Use binary search to find partition positions. Remember the total number of elements of left sides of partitions are fixed.
+
+[74. Search a 2D Matrix - LeetCode](https://leetcode.com/problems/search-a-2d-matrix/submissions/) Flat 2D matrix into 1D array.
+
+[*162. Find Peak Element - LeetCode](https://leetcode.com/problems/find-peak-element/solution/)
+
+Check only one side is ok; Why we can definately find a peek?
