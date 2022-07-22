@@ -102,3 +102,15 @@ Use binary search to find partition positions. Remember the total number of elem
 [*162. Find Peak Element - LeetCode](https://leetcode.com/problems/find-peak-element/solution/)
 
 Check only one side is ok; Why we can definately find a peek?
+
+[302. Smallest Rectangle Enclosing Black Pixels](https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/) disgusting
+
+[852. Peak Index in a Mountain Array](https://leetcode.com/problems/peak-index-in-a-mountain-array/)
+
+Just care about `mid` and `mid + 1`, because there will always be `l <= peak <= r`.
+
+[*875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/submissions/)
+
+[*658. Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/)
+
+Binary search with sliding window, interested. Don't use `abs()` in this question.
