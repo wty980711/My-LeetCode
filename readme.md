@@ -114,3 +114,188 @@ Just care about `mid` and `mid + 1`, because there will always be `l <= peak <= 
 [*658. Find K Closest Elements](https://leetcode.com/problems/find-k-closest-elements/)
 
 Binary search with sliding window, interested. Don't use `abs()` in this question.
+
+# Sort
+
+## Bubble Sort
+
+In each pass, swap two adjacent elements, so that we can move the largest element to the end.
+
+```python
+# bubble sort
+def bubbleSort(nums):
+    n = len(nums)
+    for i in range(n):
+        for j in range(n - 1 - i):
+            if nums[j] > nums[j + 1]:
+                nums[j], nums[j + 1] = nums[j + 1], nums[j]
+```
+
+## Inserttion Sort
+
+Traverse the array, start from `i = 1` to `i = len(nums) - 1`. Each time we let `key = nums[i]`, and we assume that `nums[:i]` is already sorted. 
+
+So what we do here is to insert the `key` into the proper place in `nums[:i]`.
+
+And we let `j = i - 1`, and compare `key` and `nums[j]`. 
+
+- `if key >= nums[j]`: there is no need to sort, key is already in the right place, and nums[:i+1] is sorted.
+- `if key < nums[j]`: `key` is not in the right place, it should locate in somewhere in the front. So we take `key` out of the array, and let `nums[j+1] = nums[j]` to move nums[j] one place to the behind, so that there will be place to insert key in the front. Then we let `j -= 1` and keep comparing numbers in the front with `key`, until we find a place to insert `key` in.
+
+
+```python
+def insertionSort(nums):
+    for i in range(1, len(nums)):
+        key = nums[i]
+        j = i - 1
+        while j >= 0 and nums[j] > key:
+            nums[j + 1] = nums[j]
+            j -= 1
+        nums[j + 1] = key
+```
+
+## Selection Sort
+
+Each pass, find the least number and move it to the front of the array.
+
+ O(N^2)
+
+```python
+def selectionSort(nums):
+    n = len(nums)
+    for i in range(n):
+        min_ind = i
+        for j in range(i + 1, n):
+            if nums[j] < nums[min_ind]:
+                min_ind = j
+        nums[i], nums[min_ind] = nums[min_ind], nums[i]
+```
+
+## Quick Sort
+quickSort(nums, low, high):
+
+For the range [low, high] of an array `nums`, let `pivot = nums[high]`, and move pivot to the position where all numbers before are less than of equal to it, and all numbers behind are larger than it.
+
+Then we do quickSort(nums, low, pivot_ind - 1) and quickSort(nums, pivot_ind + 1, high) recursively.
+
+O(nLogn), the worst case is O(n^2). QuickSort is faster in practice, because its inner loop can be efficiently implemented on most architectures, and in most real-world data. QuickSort can be implemented in different ways by changing the choice of pivot, so that the worst case rarely occurs for a given type of data. However, merge sort is generally considered better when data is huge and stored in external storage. 
+
+```python
+def partition(nums, low, high):
+    pivot = nums[high]
+    i = low - 1
+    for j in range(low, high):
+        if nums[j] <= pivor:
+            i += 1
+            nums[i], nums[j] = nums[j], nums[i]
+    nums[i + 1], nums[high] = nums[high], nums[i + 1]
+    # [low, i] are numbers <= pivot
+    # [i + 1, high] are numbers > pivot
+    # so finally swap pivot and nums[i + 1]
+
+    return i + 1
+
+def quickSort(nums, low, high):
+    if low < high:
+        pivot_ind = partition(nums, low, high)
+        quickSort(nums, low, pivot_ind - 1)
+        quickSort(nums, pivot_ind + 1, high)
+
+quickSort(nums, 0, len(nums) - 1)
+```
+
+[*215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/submissions/)
+
+Quick select, compare `pivot_idx` with `K`.
+
+## Merge Sort
+
+Partition the array into two subarrays, then sort two subarrays, and merge them together.
+
+T: O(nLogn), depth of the tree is Logn, and for each level we need O(n) time to merge (linearly traverse all).
+
+S: O(n)
+
+```python
+def mergeSort(nums):
+    if len(nums) > 1:
+        mid = len(nums) // 2
+        L = nums[:mid]
+        R = nums[mid:]
+        mergeSort(L)
+        mergeSort(R)
+        i = j = k = 0
+
+        while i < len(L) and j < len(R):
+            if L[i] <= R[j]:
+                nums[k] = L[i]
+                i += 1
+            else:
+                nums[k] = R[j]
+                j += 1
+            k += 1
+        
+        while i < len(L):
+            nums[k] = L[i]
+            i += 1
+            k += 1
+        
+        while j < len(R):
+            nums[k] = R[j]
+            j += 1
+            k += 1
+```
+
+## Heap Sort
+
+Time Complexity: O(n logn)
+- Time complexity of heapify is O(Logn). 
+- Time complexity of createAndBuildHeap() is O(n) 
+- Hence the overall time complexity of Heap Sort is O(nLogn).
+
+```python
+def heapify(arr, n, i):
+    largest = i  # Initialize largest as root
+    l = 2 * i + 1     # left = 2*i + 1
+    r = 2 * i + 2     # right = 2*i + 2
+  
+    # See if left child of root exists and is
+    # greater than root
+    if l < n and arr[largest] < arr[l]:
+        largest = l
+  
+    # See if right child of root exists and is
+    # greater than root
+    if r < n and arr[largest] < arr[r]:
+        largest = r
+  
+    # Change root, if needed
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]  # swap
+  
+        # Heapify the root.
+        heapify(arr, n, largest)
+  
+# The main function to sort an array of given size
+def heapSort(arr):
+    n = len(arr)
+  
+    # Build a maxheap.
+    for i in range(n//2 - 1, -1, -1):
+        heapify(arr, n, i)
+  
+    # One by one extract elements
+    for i in range(n-1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i]  # swap
+        heapify(arr, i, 0)
+```
+
+## Bucket Sort
+
+Known number of elements, and elements distribut uniformly. 
+
+- Create n buckets `arr[n]`, where n is larger than the number of elements
+- Align the elements to make them range from 0 to n
+- For each element `num[i]`, do `arr[nums[i]].append(nums[i])`
+- For each array element in `arr`, sort `arr[i]` with other sort method.
+- then every number is sorted
