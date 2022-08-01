@@ -1,0 +1,39 @@
+# 142. Linked List Cycle II
+## Idea
+You can use hash table to track every visited node, while traversing the list, the first node visited before is the start of the cycle.
+
+But a more advanced approach is to use two pointers.
+
+Let's use fast pointer and slow pointer, after k iterations, `fast` catches up with `slow`. Now `fast` has moved 2k steps, and `slow` has moved k steps.
+
+Let's assume that the perimeter of the cycle is `C`, there will be: `2k = k + N*C`. Becasue `fast` caught up with `slow` in the cycle, so it must move `N*C` steps more than `slow`, which means `k = N*C`.
+
+Now let's assume that the distance between the start of the cycle and the point they met is `m`. There will be:
+- Since `slow` move `k` steps from head to the meet point, **so the distance between the head and the start of the cycle is `k - m`**
+- If `fast` move `k` steps in the next, it will reach the meet point again, becasue `k` is the multiple of cycle's perimeter. **So if `fast` move `k - m` steps, it will reach the start of the cycle.**
+
+See? If we let two pointers to start from the head and the meet point together, after moving `k - m` steps, they will meet at the start of the cycle.
+
+In other words, if they meet, the only place would be the start of the cycle.
+
+## Code
+```python
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        fast = slow = head
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            if fast == slow:
+                break
+        
+        if not fast or not fast.next:
+            return None
+        
+        slow = head
+        while fast != slow:
+            fast = fast.next
+            slow = slow.next
+            
+        return fast
+```

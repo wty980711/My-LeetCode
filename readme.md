@@ -299,3 +299,22 @@ Known number of elements, and elements distribut uniformly.
 - For each element `num[i]`, do `arr[nums[i]].append(nums[i])`
 - For each array element in `arr`, sort `arr[i]` with other sort method.
 - then every number is sorted
+
+# Array
+
+[43. Multiply Strings](https://leetcode.com/problems/multiply-strings/)
+
+Elementary math lol, and space complexity is O(m+n)
+
+## Two Pointers
+[*42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+
+[*160. Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/)
+
+Really genius solution with 2 pointers, can also use hash table.
+
+[*234. Palindrome Linked List](https://leetcode.com/problems/palindrome-linked-list/)
+
+constant space solution: reverse half of the list right away, and compare
+
+[328. Odd Even Linked List](https://leetcode.com/problems/odd-even-linked-list/)
