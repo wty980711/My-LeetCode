@@ -340,3 +340,43 @@ Sort the intervals, and updating the result according the intersactions.
 [\*986. Interval List Intersections](https://leetcode.com/problems/interval-list-intersections/)
 
 Very smart way to compare the boundaries of the intersections.
+
+## Palindrom
+
+[\*5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)
+
+Use two pointers to expand from the center; The center could be 1 or 2 characters.
+
+[\*680. Valid Palindrome II](https://leetcode.com/problems/valid-palindrome-ii/)
+
+Use two pointers. If `s[l] != s[r]`, delete s[l] or s[r], and then use two pointers to check these two situations again.
+
+[125. Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)
+
+`isalnum()` is so useful!
+
+## Sliding Window
+
+[\*3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+
+Very intuitive way of reduce time complexity. Use hashmap to track previous same character's position. [solution](./0003.%20Longest%20Substring%20Without%20Repeating%20Characters.md)
+
+[\*11. Container With Most Water](https://leetcode.com/problems/container-with-most-water/)
+
+The area is determined by the shorter edge, so each time we should move the pointer that points to the short edge.
+
+[\*76. Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
+
+Use sliding window and counter.
+
+[209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)
+
+`76` and `209` share really similay idea: first expand the right boundary to satisfy the target, then shrink the left boudary until the target is no more satisfied to find the min subarray.
+
+[\*239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
+
+Sliding window + mono deque. Maintain a mono decreasing deque, so that the largest element is in the head. Each time sliding window moves, update the largest element and remove the elements that are no longer in the windwow.
+
+[\*713. Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/)
+
+Really hard to think of how to count new subarrays.
