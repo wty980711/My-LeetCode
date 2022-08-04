@@ -379,4 +379,4 @@ Sliding window + mono deque. Maintain a mono decreasing deque, so that the large
 
 [\*713. Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/)
 
-Really hard to think of how to count new subarrays.
+Really hard to think of how to count new subarrays. [solution](./0713.%20Subarray%20Product%20Less%20Than%20K.md)
