@@ -131,7 +131,7 @@ def bubbleSort(nums):
                 nums[j], nums[j + 1] = nums[j + 1], nums[j]
 ```
 
-## Inserttion Sort
+## Insertion Sort
 
 Traverse the array, start from `i = 1` to `i = len(nums) - 1`. Each time we let `key = nums[i]`, and we assume that `nums[:i]` is already sorted.
 
@@ -380,3 +380,193 @@ Sliding window + mono deque. Maintain a mono decreasing deque, so that the large
 [\*713. Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/)
 
 Really hard to think of how to count new subarrays. [solution](./0713.%20Subarray%20Product%20Less%20Than%20K.md)
+
+[727. Minimum Window Subsequence](https://leetcode.com/problems/minimum-window-subsequence/)
+
+DP, you idiot
+
+[\*480. Sliding Window Median](https://leetcode.com/problems/sliding-window-median/)
+
+Two heaps + hashmap; use heap to track median, and use hashmap to track outliers.
+
+## Stream
+
+[\*295. Find Median from Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)
+
+Same as 480, use two heaps to keep track of medians.
+
+[352. Data Stream as Disjoint Intervals](https://leetcode.com/problems/data-stream-as-disjoint-intervals/)
+
+SortedDict + Binary Search
+
+## Prefix Sum
+
+[\*238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)
+
+O(1) space is awsome! Use the result to store left prefix sum, and update the result again. [solution](./0238.%20Product%20of%20Array%20Except%20Self.md)
+
+[303. Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/)
+
+[\*325. Maximum Size Subarray Sum Equals k](https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/)
+
+Prefix Sum + Two Sum (hashtable)!!!
+
+[560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/)
+
+Exactly the same as 325
+
+[528. Random Pick with Weight](https://leetcode.com/problems/random-pick-with-weight/)
+
+Prefix Sum + Binary Search
+
+## Two Sum and his family
+
+[\*18. 4Sum](https://leetcode.com/problems/4sum/)
+
+I think this is all you need...
+
+[\*653. Two Sum IV - Input is a BST](https://leetcode.com/problems/two-sum-iv-input-is-a-bst/)
+
+[1099. Two Sum Less Than K](https://leetcode.com/problems/two-sum-less-than-k/)
+
+Sort + Two pointers
+
+[259. 3Sum Smaller](https://leetcode.com/problems/3sum-smaller/)
+
+Similar to 1099. If for a sorted array, if `nums[i] + nums[j] < k`, then there are (j - i) pairs of numbers whoes sum is less than k. They are: `[i, i + 1], [i, i + 2], ..., [i, j - 1], [i, j]`
+
+# Tree
+
+[\*102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)
+
+BFS or DFS
+
+## DFS
+
+[\*297. Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)
+
+DFS + pre-order to serialize the tree
+
+## BFS
+
+# TOPO
+
+[\*207. Course Schedule](https://leetcode.com/problems/course-schedule/)
+
+[269. Alien Dictionary](https://leetcode.com/problems/alien-dictionary/)
+
+[\*444. Sequence Reconstruction](https://leetcode.com/problems/sequence-reconstruction/)
+
+Always check if `len(queue) == 1` to make sure there is only one possible supersequence.
+
+# Matrix
+
+[200. Number of Islands](https://leetcode.com/problems/number-of-islands/)
+
+Iterate all cells in the matrix while useing bfs/dfs
+
+[\*490. The Maze](https://leetcode.com/problems/the-maze/)
+
+[\*542. 01 Matrix](https://leetcode.com/problems/01-matrix/)
+
+imagine water flood from 0 to 1
+
+[\*994. Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)
+
+Rember to update the status after appending to the queue.
+
+[\*https://leetcode.com/problems/sliding-puzzle/](https://leetcode.com/problems/sliding-puzzle/)
+
+Matrix serilize + BFS
+
+# Graph
+
+## BFS & DFS
+
+[\*133. Clone Graph](https://leetcode.com/problems/clone-graph/)
+
+Use memoization to void cycle. bfs/dfs
+
+[\*127. Word Ladder](https://www.1point3acres.com/bbs/forum.php?mod=viewthread&tid=678970&extra=&authorid=682747&page=2)
+
+Bidirenctional DFS + template graph
+
+[\*261. Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/solution/)
+
+Valid tree of `n` nodes = `n - 1` edges + the graph is full connected
+
+[841. Keys and Rooms](https://leetcode.com/problems/keys-and-rooms/)
+
+Similar to above
+
+[\*323. Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/)
+
+We can not use `in_degree` because there can be cycles. We just need to select every node and use BFS/DFS to mark its neighbors and neighbors' neighbors in a hashset `visited`.
+
+Later when we find a new node hasn't been marked, we know it is on a different component, so we let `rst += 1` and then mark its neighbors again.
+
+[1306. Jump Game III](https://leetcode.com/problems/jump-game-iii/)
+
+# Binary Tree
+
+## Traversal
+
+Generally, we use `recursive function` to traverse, but we can also use `stack` to traverse `iteratively`. The T is O(n), and S is O(n).
+
+For inorder traversal, we can use `Moris Traversal` to optimize S to reach O(1).
+
+[\*94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/)
+
+## Construct Binary Tree
+
+[105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)
+
+[106. Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/)
+
+To construct a unique binary tree, `inorder` traversal is a must.
+
+When using `preorder` + `inorder`, the first element of `preorder` is the root. Then, we find this value in `inorder`, and it can split `inorder` into two parts. The left part is the left subtree, and the right part is the right subtree.
+
+When using `postorder` + `inorder`, it is similiar. But now the last element of `postorder` is the root. We can also find this value in `inorder`, and split it into two parts.
+
+[889. Construct Binary Tree from Preorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/)
+
+Without `inorder`, the binary tree may not be unique. But it's ok, we can return any of them. We can recursively create root based on either `preorder` or `postorder`, and split the other one.
+
+## Iterator
+
+[\*173. Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/)
+
+No need to flat the tree, use stack to iterate the tree in real time.
+
+[173. Binary Search Tree Iterator](https://leetcode.com/problems/binary-search-tree-iterator/)
+
+Same as above, inorder traversal + counter. We can use either recursive or iterative traversal. But use iterative traveral can save T to O(h + k).
+
+[\*285. Inorder Successor in BST](https://leetcode.com/problems/inorder-successor-in-bst/)
+
+Very smart to use BST properties.
+
+[\*510. Inorder Successor in BST II](https://leetcode.com/problems/inorder-successor-in-bst-ii/)
+
+Considering the successor of a `node`, there can be two cases:
+
+- `node` has a right child: then the successor must be **the smallest element in its right branch**.
+- `node` doesn't have a right child: then the successor must be its parent of greater parent. And the node must **in the left branch of its successor**.
+
+[\*270. Closest Binary Search Tree Value](https://leetcode.com/problems/closest-binary-search-tree-value/)
+
+We don't need to search both larger closest and smaller closest number. Just need to do one pass search with T = O(H).
+
+Let's assume the start value is smaller than target. Then we will search the right child to get closer to target. And finally we'll pass the target and reach to a node whose value is larger than the target. Then, we'll search the left child.
+
+Since we can not tarverse from childen to parents in BST, so we actually searching around the target and never look back, and get closer and closer until we reach a Null value. We just need to update the closest reuslt whenever we meet a new value.
+
+[\*98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)
+
+- Solution1: For each node, we can keep track of its upper bound and lower bound, we compare its value with the bounds, and then update the bound to check its children.
+- Solution2: We use inorder traversal to check all nodes, which is `left->root->right`, and we keep track of value of previous checked node. So each time we check if the node's value is larger than the previous value. Because BST should have `left < root < right`.
+
+[\*333. Largest BST Subtree](https://leetcode.com/problems/largest-bst-subtree/)
+
+Check if is BST first, if yes, then count nodes and return; if no, then check left subtree and right subtree
