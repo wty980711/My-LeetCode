@@ -570,3 +570,102 @@ Since we can not tarverse from childen to parents in BST, so we actually searchi
 [\*333. Largest BST Subtree](https://leetcode.com/problems/largest-bst-subtree/)
 
 Check if is BST first, if yes, then count nodes and return; if no, then check left subtree and right subtree
+
+## LCA
+
+[\*236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+
+Remember that `p`/`q` could be the ancestor of the other one.
+
+## Others
+
+[199. Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)
+
+Variant of BFS
+
+[513. Find Bottom Left Tree Value](https://leetcode.com/problems/find-bottom-left-tree-value/)
+
+Variant of DFS
+
+[\*449. Serialize and Deserialize BST](https://leetcode.com/problems/serialize-and-deserialize-bst/)
+
+Enhanced version of `lc297`. Use BST feature to optimize space and use binary search to optimize time.
+
+[\*114. Flatten Binary Tree to Linked List](https://leetcode.com/problems/flatten-binary-tree-to-linked-list/)
+
+In light of Morris Traversal....
+
+# Trie
+
+```python
+class TrieNode:
+    def __init__(self):
+        self.end = False
+        self.nextLetter = {}
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word: str) -> None:
+        node = self.root
+        for c in word:
+            if c not in node.nextLetter:
+                node.nextLetter[c] = TrieNode()
+            node = node.nextLetter[c]
+        node.end = True
+
+    def search(self, word: str) -> bool:
+        node = self.root
+        for c in word:
+            if c not in node.nextLetter:
+                return False
+            node = node.nextLetter[c]
+        return node.end
+
+    def startsWith(self, prefix: str) -> bool:
+        node = self.root
+        for c in prefix:
+            if c not in node.nextLetter:
+                return False
+            node = node.nextLetter[c]
+        return True
+```
+
+# Union Find
+
+```python
+class UnionFind:
+    def __init__(self, size):
+        self.root = [i for i in range(size)]
+        self.rank = [1] * size
+        self.count = size
+
+    # The find function here is the same as that in the disjoint set with path compression.
+    def find(self, x):
+        if x == self.root[x]:
+            return x
+        self.root[x] = self.find(self.root[x])
+        return self.root[x]
+
+    # The union function with union by rank
+    def union(self, x, y):
+        rootX = self.find(x)
+        rootY = self.find(y)
+        if rootX != rootY:
+            if self.rank[rootX] > self.rank[rootY]:
+                self.root[rootY] = rootX
+            elif self.rank[rootX] < self.rank[rootY]:
+                self.root[rootX] = rootY
+            else:
+                self.root[rootY] = rootX
+                self.rank[rootX] += 1
+        self.count -= 1
+
+    def connected(self, x, y):
+        return self.find(x) == self.find(y)
+
+    def rootCount(self):
+        return self.count
+
+```
