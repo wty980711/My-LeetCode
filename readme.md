@@ -669,3 +669,73 @@ class UnionFind:
         return self.count
 
 ```
+
+# LRU
+
+```python
+class Node:
+    def __init__(self, key, val):
+        self.key = key
+        self.val = val
+        self.prev = None
+        self.next = None
+
+class DLL:
+    def __init__(self):
+        self.head = Node(-1, -1)
+        self.tail = Node(-1, -1)
+        self.head.next = self.tail
+        self.tail.prev = self.head
+
+    def _add(self, node):
+        p = self.tail.prev
+        p.next = node
+        self.tail.prev = node
+        node.prev = p
+        node.next = self.tail
+
+    def _remove(self, node):
+        p = node.prev
+        n = node.next
+        p.next = n
+        n.prev = p
+
+    def _pop_first(self):
+        p = self.head.next
+        self._remove(p)
+        return p
+
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.size = 0
+        self.dll = DLL()
+        self.mp = {}
+
+    def get(self, key: int) -> int:
+        if key in self.mp:
+            node = self.mp[key]
+            self.dll._remove(node)
+            self.dll._add(node)
+            # self.dll.print()
+            return node.val
+        else:
+            return -1
+
+    def put(self, key: int, value: int) -> None:
+        node = Node(key, value)
+        if key in self.mp:
+            self.dll._remove(self.mp[key])
+            self.dll._add(node)
+            self.mp[key] = node
+        else:
+            if self.size == self.capacity:
+                p = self.dll._pop_first()
+                self.mp.pop(p.key)
+                self.size -= 1
+
+            self.dll._add(node)
+            self.mp[key] = node
+            self.size += 1
+```
