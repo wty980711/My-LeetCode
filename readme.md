@@ -91,17 +91,17 @@ Make sure to consider the edge cases (<=, >=, <, >)
 
 [\*81. Search in Rotated Sorted Array II](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/)
 
-Check position of the target and mid first, and then move the pointers.
+Check position of the target and mid first (if they are in the same part), and then move the pointers.
 
 [\*4. Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)
 
-Use binary search to find partition positions. Remember the total number of elements of left sides of partitions are fixed.
+Use binary search to find partition positions. Remember the total number of elements of left sides of partitions are fixed. [solution](0004.%20Median%20of%20Two%20Sorted%20Arrays.md)
 
 [74. Search a 2D Matrix - LeetCode](https://leetcode.com/problems/search-a-2d-matrix/submissions/) Flat 2D matrix into 1D array.
 
 [\*162. Find Peak Element - LeetCode](https://leetcode.com/problems/find-peak-element/solution/)
 
-Check only one side is ok; Why we can definately find a peek?
+Check only one side is ok; Why we can definately find a peek? [solution](0162.%20Find%20Peak%20Element.md)
 
 [302. Smallest Rectangle Enclosing Black Pixels](https://leetcode.com/problems/smallest-rectangle-enclosing-black-pixels/) disgusting
 
